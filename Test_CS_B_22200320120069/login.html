@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .div1{
+            background-color: bisque;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 15px;
+            width: 40%;
+            height: 150px;
+        }
+    </style>
+    <script>
+         function validateuser() {
+            const userField = document.getElementById("user");
+            const user = userField.value;
+            
+            // Check if password is exactly 5 alphabetic characters (case-insensitive)
+            if (/^[admin]{5}$/.test(user)) {
+                
+                return true; // Validation successful
+            } else {
+                alert("user  and password  incorrect");
+                return false; // Prevent form submission
+            }
+        }
+        function validatePassword() {
+            const passwordField = document.getElementById("password");
+            const password = passwordField.value;
+            
+            // Check if password is exactly 5 alphabetic characters (case-insensitive)
+            if (/^[admin]{5}$/.test(password)) {
+                alert("Login Sucessfully")
+                return true; // Validation successful
+            } else {
+                alert("Password or user  incorrect");
+                return false; // Prevent form submission
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div class="div1">
+            <form onsubmit="return validatePassword()" action="weather.html">
+                <center><h2>Login</h2></center>
+                User Id: <input type="text"  id="user" required ><br>
+                Password: <input type="text" id="password" required><br>
+                <button type="submit">Login</button>
+                <input type="reset" value="Reset">
+            </form> 
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="/CSS/cityreport.css">
+</head>
+<body>
+    <div class="form">
+        <form onsubmit="return false;">
+            <label for="city">Enter city:</label>
+            <input type="text" id="city" name="city"><br>
+            <input type="button" value="Weather Report" onclick="getWeatherReport()">
+        </form>
+        <div id="weatherResult"></div>
+    </div>
+
+    <script>
+        async function getWeatherReport() {
+            const city = document.getElementById('city').value.trim();
+
+            if (!city) {
+                alert("Please enter a city name.");
+                return;
+            }
+
+            const apiKey = 'd94ca7b19243bb9272d0e35b88af53fa'; // Replace with your actual API key
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error("City not found.");
+                }
+                const data = await response.json();
+                displayWeatherData(data);
+            } catch (error) {
+                document.getElementById('weatherResult').innerText = error.message;
+            }
+        }
+
+        function displayWeatherData(data) {
+            const { name, main, weather, wind } = data;
+            const weatherReport = `
+                <h2>Weather in ${name}</h2>
+                <p>Temperature: ${main.temp} °C</p>
+                <p>Feels Like: ${main.feels_like} °C</p>
+                <p>Humidity: ${main.humidity}%</p>
+                <p>Weather: ${weather[0].description}</p>
+                <p>Wind Speed: ${wind.speed} m/s</p>
+            `;
+
+            document.getElementById('weatherResult').innerHTML = weatherReport;
+        }
+    </script>
+</body>
+</html>
