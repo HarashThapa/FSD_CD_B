@@ -1,0 +1,20 @@
+how many way to  create react app 
+1.content delivery network
+->react, react-dom, babal
+2.create react app library
+->node-v
+->npm-v
+2. using vite
+->npm create Vite@latest my-app
+->react
+->javascript
+->npm i
+->npm run dev
+
+
+note*
+npm i
+npm update 
+npm uninstall
+npm create-react-app my-app
+npm-> non packet 
